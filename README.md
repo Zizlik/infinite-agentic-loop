@@ -18,36 +18,43 @@ Start Claude Code: `claude`
 
 Type slash command `/project:infinite` to start the infinite agentic loop.
 
-The infinite command takes three arguments:
+The infinite command now takes four arguments:
 ```
-/project:infinite <spec_file> <output_dir> <count>
+/project:infinite <spec_file> <output_dir> <count> <project_path>
 ```
 
 ### 4 Command Variants
 
 #### 1. Single Generation
 ```bash
-/project:infinite specs/invent_new_ui_v3.md src 1
+/project:infinite specs/invent_new_ui_v3.md src 1 my_project
 ```
 Generate one new iteration using the UI specification.
 
 #### 2. Small Batch (5 iterations)
 ```bash
-/project:infinite specs/invent_new_ui_v3.md src_new 5
+/project:infinite specs/invent_new_ui_v3.md src_new 5 my_project
 ```
 Deploy 5 parallel agents to generate 5 unique iterations simultaneously.
 
-#### 3. Large Batch (20 iterations)  
+#### 3. Large Batch (20 iterations)
 ```bash
-/project:infinite specs/invent_new_ui_v3.md src_new 20
+/project:infinite specs/invent_new_ui_v3.md src_new 20 my_project
 ```
 Generate 20 iterations in coordinated batches of 5 agents for optimal resource management.
 
 #### 4. Infinite Mode
 ```bash
-/project:infinite specs/invent_new_ui_v3.md infinite_src_new/ infinite
+/project:infinite specs/invent_new_ui_v3.md infinite_src_new/ infinite my_project
 ```
 Continuous generation in waves until context limits are reached, with progressive sophistication.
+
+### Example: Generate a multi-file project
+Use the folder structure spec to bootstrap an application skeleton:
+```bash
+/project:infinite specs/app_structure_spec.md scaffold 1 my_project
+```
+This command creates the directories and placeholder files described in the spec and merges them into `my_project`.
 
 ## How It Works
 

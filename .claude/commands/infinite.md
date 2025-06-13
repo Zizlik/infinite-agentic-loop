@@ -7,12 +7,14 @@ Think deeply about this infinite generation task. You are about to embark on a s
 spec_file: $ARGUMENTS
 output_dir: $ARGUMENTS
 count: $ARGUMENTS
+project_path: $ARGUMENTS
 
 **ARGUMENTS PARSING:**
 Parse the following arguments from "$ARGUMENTS":
 1. `spec_file` - Path to the markdown specification file
-2. `output_dir` - Directory where iterations will be saved  
+2. `output_dir` - Directory where iterations will be saved
 3. `count` - Number of iterations (1-N or "infinite")
+4. `project_path` - Root directory of the target project to merge results into
 
 **PHASE 1: SPECIFICATION ANALYSIS**
 Read and deeply understand the specification file at `spec_file`. This file defines:
@@ -23,8 +25,8 @@ Read and deeply understand the specification file at `spec_file`. This file defi
 
 Think carefully about the spec's intent and how each iteration should build upon previous work.
 
-**PHASE 2: OUTPUT DIRECTORY RECONNAISSANCE** 
-Thoroughly analyze the `output_dir` to understand the current state:
+**PHASE 2: OUTPUT DIRECTORY RECONNAISSANCE**
+Thoroughly analyze the `output_dir` and existing `project_path` to understand the current state:
 - List all existing files and their naming patterns
 - Identify the highest iteration number currently present
 - Analyze the content evolution across existing iterations
@@ -42,9 +44,18 @@ Based on the spec analysis and existing iterations:
 Deploy multiple Sub Agents to generate iterations in parallel for maximum efficiency and creative diversity:
 
 **Sub-Agent Distribution Strategy:**
-- For count 1-5: Launch all agents simultaneously 
+- For count 1-5: Launch all agents simultaneously
 - For count 6-20: Launch in batches of 5 agents to manage coordination
 - For "infinite": Launch waves of 3-5 agents, monitoring context and spawning new waves
+
+**Sub-Agent Roles and Output Folders:**
+1. **CEO/Manager** - breaks down the spec and assigns tasks. Output to `manager/`.
+2. **CTO/Programmer** - implements core functionality. Output to `programmer/`.
+3. **Reviewer** - reviews and suggests improvements. Output to `reviewer/`.
+4. **Tester** - writes tests and validation scripts. Output to `tester/`.
+5. **Designer** - creates UI/UX assets or mockups. Output to `designer/`.
+
+Each role receives only the relevant portion of the specification along with its dedicated folder inside `output_dir`.
 
 **Agent Assignment Protocol:**
 Each Sub Agent receives:
@@ -84,7 +95,14 @@ DELIVERABLE: Single file as specified, with unique innovative content
 - Ensure no duplicate iteration numbers are generated
 - Collect and validate all completed iterations
 
-**PHASE 5: INFINITE MODE ORCHESTRATION**
+**PHASE 5: MERGING RESULTS**
+After all sub-agents finish their work:
+- Combine the contents of each role's output folder into `project_path`.
+- Resolve conflicts by preferring reviewed and tested files.
+- Maintain the directory structure defined in the specification.
+- Provide a summary of merged files and any issues.
+
+**PHASE 6: INFINITE MODE ORCHESTRATION**
 For infinite generation mode, orchestrate continuous parallel waves:
 
 **Wave-Based Generation:**
